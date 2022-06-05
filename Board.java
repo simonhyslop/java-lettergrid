@@ -27,24 +27,25 @@ public class Board {
         }
     }
 
-    private void roll() {
-        Collections.shuffle(this.allTheDice);
+    private void shuffleOrder() {
+        Collections.shuffle(allTheDice);
         return;
     }
 
     public String printBoard() {
+        shuffleOrder();
+
         String horizontalBorder = " -------------- ";
 
         StringBuffer boardString = new StringBuffer(horizontalBorder);
 
-        for (int i = 0; i < this.allTheDice.size(); i++) {
+        for (int i = 0; i < allTheDice.size(); i++) {
             if(i % 4 == 0) {
                 boardString.append("\n| ");
             }
 
-            Die currentDie = this.allTheDice.get(i);
-            // Collections.shuffle(currentDie.allLetters);
-            boardString.append(" " + currentDie.getLetter() + " ");
+            Die currentDie = allTheDice.get(i);
+            boardString.append(" " + currentDie.getRandomLetter() + " ");
 
             if (i % 4 == 3) {
                 boardString.append(" |");
