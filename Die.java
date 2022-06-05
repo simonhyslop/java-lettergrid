@@ -1,12 +1,27 @@
 import java.util.ArrayList;
 
 public class Die {
-    public ArrayList<Character> allLetters = new ArrayList<>();
+    private char[] allLetters;
+    private char currLetter;
 
     public Die(String letterInput) {
-        for (int i = 0; i < letterInput.length(); i++) {
-            this.allLetters.add(letterInput.charAt(i));
+        int numLetters = letterInput.length();
+        allLetters = new char[numLetters];
+
+        for (int i = 0; i < numLetters; i++) {
+            allLetters[i] = letterInput.charAt(i);
         }
+
+        this.roll();
+    }
+
+    public void roll() {
+        int randomIndex = Board.generator.nextInt(allLetters.length);
+        currLetter = allLetters[randomIndex];
+    }
+
+    public char getLetter() {
+        return this.currLetter;
     }
 
 }
